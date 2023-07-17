@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from '../store';
+import { IRootState } from '../../store';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import Dropdown from '../components/Dropdown';
-import { setPageTitle } from '../store/themeConfigSlice';
+import Dropdown from '../../components/Dropdown';
+import { setPageTitle } from '../../store/themeConfigSlice';
 import dynamic from 'next/dynamic';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 import Link from 'next/link';
+import Breadcrumb from '@/components/Layouts/Breadcrumb';
 
-const Index = () => {
+const AdminDashboard = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setPageTitle('Sales Admin'));
+        dispatch(setPageTitle('Admin Dashboard'));
     });
     const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
     const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
@@ -396,16 +397,7 @@ const Index = () => {
     return (
         <>
             <div>
-                <ul className="flex space-x-2 rtl:space-x-reverse">
-                    <li>
-                        <Link href="/" className="text-primary hover:underline">
-                            Dashboard
-                        </Link>
-                    </li>
-                    <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                        <span>Sales</span>
-                    </li>
-                </ul>
+                <Breadcrumb />
 
                 <div className="pt-5">
                     <div className="mb-6 grid gap-6 xl:grid-cols-3">
@@ -667,7 +659,7 @@ const Index = () => {
                     <div className="mb-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                         <div className="panel h-full pb-0 sm:col-span-2 xl:col-span-1">
                             <h5 className="mb-5 text-lg font-semibold dark:text-white-light">Recent Activities</h5>
-                            <PerfectScrollbar className="relative mb-4 h-[290px] ltr:-mr-3 ltr:pr-3 rtl:-ml-3 rtl:pl-3" options={{suppressScrollX: true}}>
+                            <PerfectScrollbar className="relative mb-4 h-[290px] ltr:-mr-3 ltr:pr-3 rtl:-ml-3 rtl:pl-3" options={{ suppressScrollX: true }}>
                                 <div className="cursor-pointer text-sm">
                                     <div className="group relative flex items-center py-1.5">
                                         <div className="h-1.5 w-1.5 rounded-full bg-primary ltr:mr-1 rtl:ml-1.5"></div>
@@ -1320,4 +1312,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default AdminDashboard;
