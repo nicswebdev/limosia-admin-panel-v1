@@ -1,18 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setPageTitle } from '@/store/themeConfigSlice';
-import Breadcrumb from '@/components/Layouts/Breadcrumb';
 import { Field, Form, Formik } from 'formik';
 import Link from 'next/link';
+import { setPageTitle } from '@/store/themeConfigSlice';
+import Breadcrumb from '@/components/Layouts/Breadcrumb';
+import { initialValues } from '@/src/shared/const/Airport.const';
 
 export default function CreateAirport() {
     const dispatch = useDispatch();
-
-    const initialValues = {
-        name: '',
-        latitude: '',
-        longitude: '',
-    };
 
     const SubmitForm = async (values: {}) => {
         console.log(values);
@@ -29,7 +24,7 @@ export default function CreateAirport() {
 
                 <div className="min-h-screen pt-5">
                     <div className="panel h-full">
-                        <div className="mb-5 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+                        <div className="mb-5 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
                             <h5 className="text-lg font-semibold dark:text-white-light">Create Airport Data</h5>
                             <Link href="/admin/airport" className="btn btn-primary gap-2">
                                 Go Back
