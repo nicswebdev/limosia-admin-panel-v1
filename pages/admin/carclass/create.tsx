@@ -7,10 +7,10 @@ import withReactContent from 'sweetalert2-react-content';
 import { useRouter } from 'next/navigation';
 import { setPageTitle } from '@/store/themeConfigSlice';
 import Breadcrumb from '@/components/Layouts/Breadcrumb';
-import { initialValues } from '@/src/shared/const/CarClass.const';
+import { initialValues, addCarClassSchema } from '@/src/shared/const/CarClass.const';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
 import axios from 'axios';
-import { CarClassType, addCarClassSchema } from '@/src/types/CarClass.type';
+import { CarClassType } from '@/src/types/CarClass.type';
 import InputErrorMessage from '@/components/InputErrorMessage';
 
 export default function CreateCarClass() {
