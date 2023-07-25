@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "class_name": "City Car",
+    "class_image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    "class_description": "This is City Car",
+    "class_max_guest": 10,
+    "class_max_suitcase": 4,
+    "created_at": "2023-07-20 12:16:00"
+  },
+  {
+    "id": "2",
+    "class_name": "Mini Bus",
+    "class_image": "https://images.unsplash.com/photo-1534011056808-50c1c6082fe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    "class_description": "This is Mini Bus",
+    "class_max_guest": 20,
+    "class_max_suitcase": 10,
+    "created_at": "2023-07-20 12:16:00"
+  },
+  {
+    "id": "3",
+    "class_name": "Executive",
+    "class_image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    "class_description": "This is Executive Car",
+    "class_max_guest": 10,
+    "class_max_suitcase": 4,
+    "created_at": "2023-07-20 12:16:00"
+  },
+  {
+    "id": "4",
+    "class_name": "Luxury",
+    "class_image": "https://images.unsplash.com/photo-1534011056808-50c1c6082fe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    "class_description": "This is Luxury Car",
+    "class_max_guest": 20,
+    "class_max_suitcase": 10,
+    "created_at": "2023-07-20 12:16:00"
+  }
+]

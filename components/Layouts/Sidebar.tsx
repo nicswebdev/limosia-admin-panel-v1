@@ -11,6 +11,8 @@ import { MenuItemType } from '@/src/types/MenuItem.type';
 import HomeIcon from '@/src/assets/icons/Home.icon';
 import BookingIcon from '@/src/assets/icons/Booking.icon';
 import DocumentIcon from '@/src/assets/icons/Document.icon';
+import UsersIcon from '@/src/assets/icons/Users.icon';
+import { BookIcon } from '@/src/assets/icons/Book.icon';
 
 const Sidebar = () => {
     const router = useRouter();
@@ -31,32 +33,42 @@ const Sidebar = () => {
             url: '/admin/dashboard',
             icon: <HomeIcon />,
         },
+        // {
+        //     label: 'Booking',
+        //     hasChildren: false,
+        //     url: '/admin/carclass',
+        //     icon: <BookingIcon />,
+        // },
         {
-            label: 'Booking',
-            hasChildren: true,
-            url: '#',
-            icon: <BookingIcon />,
-            children: [
-                {
-                    label: 'View All',
-                    url: '/admin/dashboard',
-                },
-                {
-                    label: 'Create',
-                    url: '/admin/dashboard',
-                },
-                {
-                    label: 'Update',
-                    url: '/admin/dashboard',
-                },
-            ],
-        },
-        {
-            label: 'Blank Page',
+            label: 'Car Class',
             hasChildren: false,
-            url: '/admin/blank',
+            url: '/admin/carclass',
             icon: <DocumentIcon />,
         },
+        {
+            label: 'Airport',
+            hasChildren: false,
+            url: '/admin/airport',
+            icon: <DocumentIcon />,
+        },
+        {
+            label: 'Orders',
+            hasChildren: false,
+            url: '/admin/orders',
+            icon: <BookIcon />,
+        },
+        {
+            label: 'Users',
+            hasChildren: false,
+            url: '/admin/users',
+            icon: <UsersIcon />,
+        },
+        // {
+        //   label: 'Blank Page',
+        //   hasChildren: false,
+        //   url: '/admin/blank',
+        //   icon: <DocumentIcon />,
+        // },
     ];
 
     useEffect(() => {
