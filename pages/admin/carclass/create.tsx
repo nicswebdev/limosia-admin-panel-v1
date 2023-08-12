@@ -12,6 +12,7 @@ import ImageUploading, { ImageListType } from 'react-images-uploading';
 import axios from 'axios';
 import { CarClassType } from '@/src/types/CarClass.type';
 import InputErrorMessage from '@/components/InputErrorMessage';
+import { authConfig } from '@/src/shared/config';
 
 export default function CreateCarClass() {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function CreateCarClass() {
     const MySwal = withReactContent(Swal);
 
     const SubmitForm = async (values: CarClassType) => {
+        const token = localStorage.getItem(authConfig.storageTokenName);
         let data: CarClassType = {
             name: values.name,
             description: values.description,
@@ -32,6 +34,7 @@ export default function CreateCarClass() {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`,
                 },
             });
 
