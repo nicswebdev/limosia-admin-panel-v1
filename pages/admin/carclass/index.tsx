@@ -15,7 +15,7 @@ import { PencilIcon } from '@/src/assets/icons/Pencil.icon';
 import { PlusIcon } from '@/src/assets/icons/Plus.icon';
 import { CustomModal } from '@/components/CustomModal';
 
-export default function CarClassIndex() {
+const CarClassIndex = () => {
     const PAGE_SIZE = 10;
     const BEHost = String(process.env.NEXT_PUBLIC_BACKEND_HOST);
     const dispatch = useDispatch();
@@ -124,9 +124,7 @@ export default function CarClassIndex() {
                                             accessor: 'image',
                                             title: 'Image',
                                             render: ({ image }: { image: string }) => {
-                                                const parsedURL: string = image.replace('public/', BEHost);
-
-                                                return <Image src={parsedURL} width={100} height={100} style={{ width: 'auto', height: 'auto' }} alt="" priority />;
+                                                return <Image src={image} width={100} height={100} style={{ width: 'auto', height: 'auto' }} alt="" priority />;
                                             },
                                         },
                                         {
@@ -169,4 +167,6 @@ export default function CarClassIndex() {
             </CustomModal>
         </>
     );
-}
+};
+
+export default CarClassIndex;

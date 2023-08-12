@@ -11,6 +11,7 @@ import { addAirportSchema, initialValues } from '@/src/shared/const/Airport.cons
 import { AirportType } from '@/src/types/Airport.type';
 import InputErrorMessage from '@/components/InputErrorMessage';
 import { useRouter } from 'next/navigation';
+import { authConfig } from '@/src/shared/config';
 
 export default function CreateAirport() {
     const dispatch = useDispatch();
@@ -18,10 +19,13 @@ export default function CreateAirport() {
     const router = useRouter();
 
     const SubmitForm = async (values: AirportType) => {
+        const token = localStorage.getItem(authConfig.storageTokenName);
+
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}airports`, values, {
                 headers: {
                     Accept: 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
             });
 

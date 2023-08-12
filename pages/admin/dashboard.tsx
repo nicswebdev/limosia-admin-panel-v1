@@ -22,7 +22,7 @@ const AdminDashboard = () => {
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
         setIsMounted(true);
-    });
+    }, []);
 
     //Revenue Chart
     const revenueChart: any = {

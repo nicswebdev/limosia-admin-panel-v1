@@ -9,10 +9,13 @@ import Sidebar from './Sidebar';
 import Setting from './Setting';
 import Portals from '../../components/Portals';
 import { useRouter } from 'next/router';
+import { useAuthContext } from '@/contexts/AuthContext/hooks';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
     const router = useRouter();
-    const [showLoader, setShowLoader] = useState(true);
+    const auth = useAuthContext();
+
+    // const [auth.loading, setShowLoader] = useState(true);
     const [showTopButton, setShowTopButton] = useState(false);
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
     const [animation, setAnimation] = useState(themeConfig.animation);
@@ -34,12 +37,12 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
     useEffect(() => {
         window.addEventListener('scroll', onScrollHandler);
 
-        const screenLoader = document.getElementsByClassName('screen_loader');
-        if (screenLoader?.length) {
-            setTimeout(() => {
-                setShowLoader(false);
-            }, 200);
-        }
+        // const screenLoader = document.getElementsByClassName('screen_loader');
+        // if (screenLoader?.length) {
+        // setTimeout(() => {
+        //     auth.setLoading(false);
+        // }, 2000);
+        // }
 
         router.events.on('beforeHistoryChange', () => {
             setAnimation(themeConfig.animation);
@@ -64,7 +67,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
             {/* BEGIN MAIN CONTAINER */}
             <div className="relative">
                 {/* screen loader  */}
-                {showLoader && (
+                {auth.loading && (
                     <div className="screen_loader animate__animated fixed inset-0 z-[60] grid place-content-center bg-[#fafafa] dark:bg-[#060818]">
                         <svg width="64" height="64" viewBox="0 0 135 135" xmlns="http://www.w3.org/2000/svg" fill="#4361ee">
                             <path d="M67.447 58c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10zm9.448 9.447c0 5.523 4.477 10 10 10 5.522 0 10-4.477 10-10s-4.478-10-10-10c-5.523 0-10 4.477-10 10zm-9.448 9.448c-5.523 0-10 4.477-10 10 0 5.522 4.477 10 10 10s10-4.478 10-10c0-5.523-4.477-10-10-10zM58 67.447c0-5.523-4.477-10-10-10s-10 4.477-10 10 4.477 10 10 10 10-4.477 10-10z">
@@ -97,7 +100,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
                         </button>
                     )}
                 </div>
-               
+
                 <div className={`${themeConfig.navbar} main-container min-h-screen text-black dark:text-white-dark`}>
                     {/* BEGIN SIDEBAR */}
                     <Sidebar />

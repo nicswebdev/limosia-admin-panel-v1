@@ -13,6 +13,7 @@ import axios from 'axios';
 import { CarClassType } from '@/src/types/CarClass.type';
 import InputErrorMessage from '@/components/InputErrorMessage';
 import { initialValues as blankValues, addCarClassSchema } from '@/src/shared/const/CarClass.const';
+import { authConfig } from '@/src/shared/config';
 
 export default function UpdateCarClass() {
     const dispatch = useDispatch();
@@ -24,11 +25,14 @@ export default function UpdateCarClass() {
     const maxNumber = 69;
 
     const SubmitForm = async (values: CarClassType) => {
+        const token = localStorage.getItem(authConfig.storageTokenName);
+
         try {
             const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}car-class/${router.query.id}`, values, {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`,
                 },
             });
 

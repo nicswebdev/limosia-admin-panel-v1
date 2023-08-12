@@ -11,6 +11,7 @@ import { addAirportSchema, initialValues as blankValues } from '@/src/shared/con
 import { AirportType } from '@/src/types/Airport.type';
 import InputErrorMessage from '@/components/InputErrorMessage';
 import { useRouter } from 'next/router';
+import { authConfig } from '@/src/shared/config';
 
 export default function UpdateAirport() {
     const dispatch = useDispatch();
@@ -20,10 +21,13 @@ export default function UpdateAirport() {
     const [initialValues, setInitialValues] = useState(blankValues);
 
     const SubmitForm = async (values: AirportType) => {
+        const token = localStorage.getItem(authConfig.storageTokenName);
+
         try {
             const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}airports/${router.query.id}`, values, {
                 headers: {
                     Accept: 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
             });
 

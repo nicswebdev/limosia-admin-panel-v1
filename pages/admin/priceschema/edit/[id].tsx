@@ -14,6 +14,7 @@ import { optionType, PriceSchemaType } from '@/src/types/PriceSchema.type';
 import { addPriceSchemaValidation, initialValues as blankValues } from '@/src/shared/const/PriceSchema.const';
 import Select from 'react-select';
 import { NumericFormat } from 'react-number-format';
+import { authConfig } from '@/src/shared/config';
 
 export default function UpdatePriceSchema() {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ export default function UpdatePriceSchema() {
     const [carClasses, setCarClasses] = useState<optionType[]>([]);
 
     const SubmitForm = async (values: PriceSchemaType) => {
+        const token = localStorage.getItem(authConfig.storageTokenName);
         const price = values.base_price.toString();
 
         let data = {
@@ -36,6 +38,7 @@ export default function UpdatePriceSchema() {
             const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}price-schema/${router.query.id}`, data, {
                 headers: {
                     Accept: 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
             });
             if (response.status === 200) {
@@ -151,7 +154,15 @@ export default function UpdatePriceSchema() {
                                                     const defaultValue = airports.find((airport) => Number(airport.value) === values.airport_id);
 
                                                     if (defaultValue) {
-                                                        return <Select placeholder="Select Airport" options={airports} onChange={(e) => setFieldValue('airport_id', e?.value)} id="airport" defaultValue={defaultValue} />;
+                                                        return (
+                                                            <Select
+                                                                placeholder="Select Airport"
+                                                                options={airports}
+                                                                onChange={(e) => setFieldValue('airport_id', e?.value)}
+                                                                id="airport"
+                                                                defaultValue={defaultValue}
+                                                            />
+                                                        );
                                                     }
                                                 }}
                                             </Field>
@@ -192,7 +203,15 @@ export default function UpdatePriceSchema() {
                                                 {({ form }: any) => {
                                                     const { setFieldValue } = form;
 
-                                                    return <NumericFormat onChange={(e) => setFieldValue('base_price', e.target.value)} className="form-input" prefix="$" thousandSeparator value={values.base_price} />;
+                                                    return (
+                                                        <NumericFormat
+                                                            onChange={(e) => setFieldValue('base_price', e.target.value)}
+                                                            className="form-input"
+                                                            prefix="$"
+                                                            thousandSeparator
+                                                            value={values.base_price}
+                                                        />
+                                                    );
                                                 }}
                                             </Field>
                                             <ErrorMessage name="base_price" render={(msg) => <InputErrorMessage message={msg} />} />
