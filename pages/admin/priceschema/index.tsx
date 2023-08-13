@@ -13,156 +13,163 @@ import { PencilIcon } from '@/src/assets/icons/Pencil.icon';
 import TrashIcon from '@/src/assets/icons/Trash.icon';
 import { PlusIcon } from '@/src/assets/icons/Plus.icon';
 import { CustomModal } from '@/components/CustomModal';
+import { authConfig } from '@/src/shared/config';
 
 export default function PriceSchemaIndex() {
-  const PAGE_SIZE = 10;
+    const PAGE_SIZE = 10;
 
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const MySwal = withReactContent(Swal);
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const MySwal = withReactContent(Swal);
 
-  const [page, setPage] = useState(1);
-  const [priceSchemas, setPriceSchemas] = useState({
-    items: [],
-    message: '',
-    meta: {
-      currentPage: 0,
-      itemCount: 0,
-      itemsPerPage: 0,
-      totalItems: 0,
-      totalPages: 0,
-    },
-    statusCode: 0,
-  });
-
-  const [records, setRecords] = useState(priceSchemas.items.slice(0, PAGE_SIZE));
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [id, setID] = useState('');
-
-  const deletePriceSchema = async () => {
-    const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}price-schema/${id}`);
-
-    if (response.status === 200) {
-      MySwal.fire({
-        title: 'Data Deleted.',
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        showCloseButton: true,
-        customClass: {
-          popup: `color-danger`,
+    const [page, setPage] = useState(1);
+    const [priceSchemas, setPriceSchemas] = useState({
+        items: [],
+        message: '',
+        meta: {
+            currentPage: 0,
+            itemCount: 0,
+            itemsPerPage: 0,
+            totalItems: 0,
+            totalPages: 0,
         },
-      });
+        statusCode: 0,
+    });
 
-      router.reload();
-    }
-  };
+    const [records, setRecords] = useState(priceSchemas.items.slice(0, PAGE_SIZE));
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [id, setID] = useState('');
 
-  useEffect(() => {
-    dispatch(setPageTitle('Price Schema Data'));
-  });
+    const deletePriceSchema = async () => {
+        const token = localStorage.getItem(authConfig.storageTokenName);
 
-  useEffect(() => {
-    let source = axios.CancelToken.source();
-
-    const fetchCarClasses = async () => {
-      const from = (page - 1) * PAGE_SIZE;
-      const to = from + PAGE_SIZE;
-
-      try {
-        const url = `${process.env.NEXT_PUBLIC_API_URL}price-schema?page=1&limit=10&sortBy=ASC`;
-
-        const response = await axios.get(url, {
-          cancelToken: source.token,
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}price-schema/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         });
 
-        setPriceSchemas(response.data);
-        setRecords(response.data.items.slice(from, to));
-      } catch (error) {
-        console.log(error);
-      }
+        if (response.status === 200) {
+            MySwal.fire({
+                title: 'Data Deleted.',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                showCloseButton: true,
+                customClass: {
+                    popup: `color-danger`,
+                },
+            });
+
+            router.reload();
+        }
     };
 
-    fetchCarClasses();
+    useEffect(() => {
+        dispatch(setPageTitle('Price Schema Data'));
+    });
 
-    return () => {
-      source.cancel();
-    };
-  }, []);
+    useEffect(() => {
+        let source = axios.CancelToken.source();
 
-  useEffect(() => {
-    const from = (page - 1) * PAGE_SIZE;
-    const to = from + PAGE_SIZE;
-    setRecords(priceSchemas.items.slice(from, to));
-  }, [page]);
+        const fetchCarClasses = async () => {
+            const from = (page - 1) * PAGE_SIZE;
+            const to = from + PAGE_SIZE;
 
-  return (
-    <>
-      <div>
-        <Breadcrumb />
+            try {
+                const url = `${process.env.NEXT_PUBLIC_API_URL}price-schema?page=1&limit=10&sortBy=ASC`;
 
-        <div className="min-h-screen pt-5">
-          <div className="panel h-full">
-            <div className="mb-5 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-              <h5 className="text-lg font-semibold dark:text-white-light">Price Schema Data</h5>
+                const response = await axios.get(url, {
+                    cancelToken: source.token,
+                });
 
-              <Link href="priceschema/create" className="btn btn-primary gap-2">
-                <PlusIcon className="aspect-square h-5" />
-                Add New
-              </Link>
-            </div>
+                setPriceSchemas(response.data);
+                setRecords(response.data.items.slice(from, to));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchCarClasses();
+
+        return () => {
+            source.cancel();
+        };
+    }, []);
+
+    useEffect(() => {
+        const from = (page - 1) * PAGE_SIZE;
+        const to = from + PAGE_SIZE;
+        setRecords(priceSchemas.items.slice(from, to));
+    }, [page]);
+
+    return (
+        <>
             <div>
-              <div className="rounded-lg bg-white dark:bg-black">
-                <DataTable
-                  columns={[
-                    { accessor: 'id' },
-                    { accessor: 'tier_name', title: 'Tier Name' },
-                    { accessor: 'car_class.name', title: 'Car Class Name' },
-                    { accessor: 'airport.name', title: 'Airport' },
-                    { accessor: 'range_km', title: 'Range (in KM)' },
-                    {
-                      accessor: 'base_price',
-                      title: 'Base Price',
-                      render: ({ base_price }) => <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(base_price)}</span>,
-                    },
-                    {
-                      accessor: 'actions',
-                      title: 'Actions',
-                      textAlignment: 'right',
-                      render: (priceSchemas: any) => (
-                        <Group spacing={10} position="right" noWrap>
-                          <Link href={`priceschema/edit/${priceSchemas.id}`}>
-                            <PencilIcon className="aspect-square h-5 text-info" />
-                          </Link>
-                          <ActionIcon
-                            color="red"
-                            onClick={() => {
-                              setDeleteModal(true);
-                              setID(priceSchemas.id);
-                            }}
-                          >
-                            <TrashIcon className="aspect-square h-5 text-danger" />
-                          </ActionIcon>
-                        </Group>
-                      ),
-                    },
-                  ]}
-                  records={records}
-                  totalRecords={priceSchemas.meta?.totalItems}
-                  recordsPerPage={PAGE_SIZE}
-                  page={page}
-                  onPageChange={(p) => setPage(p)}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                <Breadcrumb />
 
-      <CustomModal title="Are you sure?" modal={deleteModal} setModal={setDeleteModal} action={deletePriceSchema}>
-        Your action cannot be undone.
-      </CustomModal>
-    </>
-  );
+                <div className="min-h-screen pt-5">
+                    <div className="panel h-full">
+                        <div className="mb-5 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+                            <h5 className="text-lg font-semibold dark:text-white-light">Price Schema Data</h5>
+
+                            <Link href="priceschema/create" className="btn btn-primary gap-2">
+                                <PlusIcon className="aspect-square h-5" />
+                                Add New
+                            </Link>
+                        </div>
+                        <div>
+                            <div className="rounded-lg bg-white dark:bg-black">
+                                <DataTable
+                                    columns={[
+                                        { accessor: 'id' },
+                                        { accessor: 'tier_name', title: 'Tier Name' },
+                                        { accessor: 'car_class.name', title: 'Car Class Name' },
+                                        { accessor: 'airport.name', title: 'Airport' },
+                                        { accessor: 'range_km', title: 'Range (in KM)' },
+                                        {
+                                            accessor: 'base_price',
+                                            title: 'Base Price',
+                                            render: ({ base_price }) => <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(base_price)}</span>,
+                                        },
+                                        {
+                                            accessor: 'actions',
+                                            title: 'Actions',
+                                            textAlignment: 'right',
+                                            render: (priceSchemas: any) => (
+                                                <Group spacing={10} position="right" noWrap>
+                                                    <Link href={`priceschema/edit/${priceSchemas.id}`}>
+                                                        <PencilIcon className="aspect-square h-5 text-info" />
+                                                    </Link>
+                                                    <ActionIcon
+                                                        color="red"
+                                                        onClick={() => {
+                                                            setDeleteModal(true);
+                                                            setID(priceSchemas.id);
+                                                        }}
+                                                    >
+                                                        <TrashIcon className="aspect-square h-5 text-danger" />
+                                                    </ActionIcon>
+                                                </Group>
+                                            ),
+                                        },
+                                    ]}
+                                    records={records}
+                                    totalRecords={priceSchemas.meta?.totalItems}
+                                    recordsPerPage={PAGE_SIZE}
+                                    page={page}
+                                    onPageChange={(p) => setPage(p)}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <CustomModal title="Are you sure?" modal={deleteModal} setModal={setDeleteModal} action={deletePriceSchema}>
+                Your action cannot be undone.
+            </CustomModal>
+        </>
+    );
 }

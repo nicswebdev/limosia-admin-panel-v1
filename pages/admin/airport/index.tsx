@@ -14,6 +14,7 @@ import TrashIcon from '@/src/assets/icons/Trash.icon';
 // import Airports from '@/src/data/Airports.json';
 import { PlusIcon } from '@/src/assets/icons/Plus.icon';
 import { CustomModal } from '@/components/CustomModal';
+import { authConfig } from '@/src/shared/config';
 
 export default function AirportIndex() {
     const PAGE_SIZE = 10;
@@ -40,7 +41,13 @@ export default function AirportIndex() {
     const [id, setID] = useState('');
 
     const deleteCarClass = async () => {
-        const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}airports/${id}`);
+        const token = localStorage.getItem(authConfig.storageTokenName);
+
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}airports/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
         if (response.status === 200) {
             MySwal.fire({
