@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '@/store';
-import { doLogout } from '@/store/userSlice';
+import { doLogout } from '@/store/authSlice';
 import { useAuthContext } from '@/contexts/AuthContext/hooks';
 
 const LogoutPage = () => {

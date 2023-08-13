@@ -5,6 +5,7 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import themeConfigSlice from './themeConfigSlice';
 import { userReducer } from './userSlice';
+import { authReducer } from './authSlice';
 
 const persistConfig = {
     key: 'root',
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     themeConfig: themeConfigSlice,
+    auth: authReducer,
     user: userReducer,
 });
 
