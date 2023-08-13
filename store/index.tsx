@@ -8,8 +8,9 @@ import { userReducer } from './userSlice';
 import { authReducer } from './authSlice';
 
 const persistConfig = {
-    key: 'root',
+    key: 'limosia',
     storage,
+    whitelist: ['themeConfig', 'auth'],
 };
 
 const rootReducer = combineReducers({
