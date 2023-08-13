@@ -53,6 +53,20 @@ export default function UpdateCarClass() {
             }
         } catch (error) {
             console.log(error);
+
+            if (axios.isAxiosError(error)) {
+                MySwal.fire({
+                    title: error.response?.data.message,
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    showCloseButton: true,
+                    customClass: {
+                        popup: `color-danger`,
+                    },
+                });
+            }
         }
     };
 
@@ -146,11 +160,7 @@ export default function UpdateCarClass() {
                                         {values.image.length !== 0 && values.image.length > 1 ? (
                                             <div>
                                                 <label>Current Car Image</label>
-                                                <img
-                                                    src={String(values.image).replace('public/', String(process.env.NEXT_PUBLIC_BACKEND_HOST))}
-                                                    alt="previous_image"
-                                                    style={{ width: '200px', height: 'auto' }}
-                                                />
+                                                <img src={values.image as string} alt="previous_image" style={{ width: '200px', height: 'auto' }} />
                                             </div>
                                         ) : (
                                             ''

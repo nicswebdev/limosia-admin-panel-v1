@@ -9,11 +9,11 @@ import * as yup from 'yup';
 
 import BlankLayout from '@/components/Layouts/BlankLayout';
 import { useLoginAuth } from '@/components/Pages/Login';
-import { doUserLogin } from '@/store/userSlice';
 import { useAuthContext } from '@/contexts/AuthContext/hooks';
 import { setPageTitle } from '@/store/themeConfigSlice';
 import { NextPage } from 'next';
 import { AppDispatch, IRootState } from '@/store';
+import { doUserLogin } from '@/store/authSlice';
 
 type Props = {};
 type LoginForm = {
@@ -33,7 +33,7 @@ const schema = yup.object().shape({
 
 const LoginCover: NextPage<Props> = (props) => {
     const {} = props;
-    const { error } = useSelector((state: IRootState) => state.user);
+    const { error } = useSelector((state: IRootState) => state.auth);
     const dispatch = useDispatch<AppDispatch>();
     const { emailField, passwordField, setEmailField, setPasswordField } = useLoginAuth();
     const authContext = useAuthContext();

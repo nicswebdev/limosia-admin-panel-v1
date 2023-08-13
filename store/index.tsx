@@ -5,14 +5,17 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import themeConfigSlice from './themeConfigSlice';
 import { userReducer } from './userSlice';
+import { authReducer } from './authSlice';
 
 const persistConfig = {
-    key: 'root',
+    key: 'limosia',
     storage,
+    whitelist: ['themeConfig', 'auth'],
 };
 
 const rootReducer = combineReducers({
     themeConfig: themeConfigSlice,
+    auth: authReducer,
     user: userReducer,
 });
 

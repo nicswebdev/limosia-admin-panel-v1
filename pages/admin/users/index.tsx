@@ -16,30 +16,31 @@ export default function UsersIndex() {
     const PAGE_SIZE = 5;
 
     const dispatch = useDispatch<AppDispatch>();
-    const { users } = useSelector((state: IRootState) => state.user);
+    const { users, meta } = useSelector((state: IRootState) => state.user);
 
     const [page, setPage] = useState(1);
-    const [records, setRecords] = useState(Users.slice(0, PAGE_SIZE));
-
-    useEffect(() => {
-        const from = (page - 1) * PAGE_SIZE;
-        const to = from + PAGE_SIZE;
-
-        setRecords(Users.slice(from, to));
-    }, [page]);
 
     useEffect(() => {
         dispatch(setPageTitle('Users Data'));
 
         const fetchUsers = async () => {
+            const params = {
+                limit: PAGE_SIZE,
+                page,
+                sort: 'ASC',
+                // search: search,
+            };
+
             try {
-                const response = await dispatch(fetchUsersList()).unwrap();
+                const response = await dispatch(fetchUsersList(params)).unwrap();
+
+                console.log({ response });
             } catch (error) {
                 console.log(error);
             }
         };
         fetchUsers();
-    }, [dispatch]);
+    }, [dispatch, page]);
 
     return (
         <>
@@ -104,10 +105,6 @@ export default function UsersIndex() {
                                             textAlignment: 'right',
                                             render: () => (
                                                 <Group spacing={10} position="right" noWrap>
-                                                    <ActionIcon color="green">Info</ActionIcon>
-                                                    <ActionIcon color="blue">
-                                                        <PencilIcon className="aspect-square h-5 text-info" />
-                                                    </ActionIcon>
                                                     <ActionIcon color="red">
                                                         <TrashIcon className="aspect-square h-5 text-danger" />
                                                     </ActionIcon>
@@ -116,7 +113,7 @@ export default function UsersIndex() {
                                         },
                                     ]}
                                     records={users}
-                                    totalRecords={users.length}
+                                    totalRecords={meta.totalItems}
                                     recordsPerPage={PAGE_SIZE}
                                     page={page}
                                     onPageChange={(p) => setPage(p)}

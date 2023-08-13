@@ -11,7 +11,7 @@ type Props = {
 
 export const AuthGuard: FC<Props> = (props) => {
     const { children } = props;
-    const { user } = useSelector((state: IRootState) => state.user);
+    const { user } = useSelector((state: IRootState) => state.auth);
     const router = useRouter();
     const auth = useAuthContext();
 

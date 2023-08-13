@@ -4,7 +4,7 @@ import { AuthContextValue } from './types';
 import { User } from '@/src/types/entities';
 import { httpClient } from '@/src/shared/utils';
 import { useDispatch } from 'react-redux';
-import { setUser as setUserSlice } from '@/store/userSlice';
+import { setError, setUser as setUserSlice } from '@/store/authSlice';
 import { useRouter } from 'next/router';
 import { authConfig } from '@/src/shared/config';
 
@@ -32,6 +32,8 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     const [loading, setLoading] = useState(INITIAL_VALUE.loading);
 
     useEffect(() => {
+        dispatch(setError(null));
+
         const initAuth = async () => {
             setLoading(true);
             const storedToken = window.localStorage.getItem(authConfig.storageTokenName);
