@@ -146,11 +146,7 @@ export default function UpdateCarClass() {
                                         {values.image.length !== 0 && values.image.length > 1 ? (
                                             <div>
                                                 <label>Current Car Image</label>
-                                                <img
-                                                    src={String(values.image).replace('public/', String(process.env.NEXT_PUBLIC_BACKEND_HOST))}
-                                                    alt="previous_image"
-                                                    style={{ width: '200px', height: 'auto' }}
-                                                />
+                                                <img src={values.image as string} alt="previous_image" style={{ width: '200px', height: 'auto' }} />
                                             </div>
                                         ) : (
                                             ''
