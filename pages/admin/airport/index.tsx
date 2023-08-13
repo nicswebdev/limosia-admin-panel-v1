@@ -43,26 +43,44 @@ export default function AirportIndex() {
     const deleteCarClass = async () => {
         const token = localStorage.getItem(authConfig.storageTokenName);
 
-        const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}airports/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
-        if (response.status === 200) {
-            MySwal.fire({
-                title: 'Data Deleted.',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                showCloseButton: true,
-                customClass: {
-                    popup: `color-danger`,
+        try {
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}airports/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
                 },
             });
 
-            router.reload();
+            if (response.status === 200) {
+                MySwal.fire({
+                    title: 'Data Deleted.',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    showCloseButton: true,
+                    customClass: {
+                        popup: `color-danger`,
+                    },
+                });
+
+                router.reload();
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                MySwal.fire({
+                    title: error.response?.data.message,
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    showCloseButton: true,
+                    customClass: {
+                        popup: `color-danger`,
+                    },
+                });
+            }
+
+            setDeleteModal(false);
         }
     };
 
