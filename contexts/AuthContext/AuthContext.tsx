@@ -32,6 +32,8 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     const [loading, setLoading] = useState(INITIAL_VALUE.loading);
 
     useEffect(() => {
+        dispatch(setError(null));
+
         const initAuth = async () => {
             setLoading(true);
             const storedToken = window.localStorage.getItem(authConfig.storageTokenName);
