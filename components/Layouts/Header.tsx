@@ -9,6 +9,10 @@ import Dropdown from '../Dropdown';
 
 const Header = () => {
     const router = useRouter();
+    const dispatch = useDispatch();
+    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
+    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
+    const { user } = useSelector((state: IRootState) => state.auth);
 
     useEffect(() => {
         const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]');
@@ -37,13 +41,6 @@ const Header = () => {
             }
         }
     }, [router.pathname]);
-
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
-
-    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-
-    const dispatch = useDispatch();
-    const { user } = useSelector((state: IRootState) => state.auth);
 
     return (
         <header className={themeConfig.semidark && themeConfig.menu === 'horizontal' ? 'dark' : ''}>
