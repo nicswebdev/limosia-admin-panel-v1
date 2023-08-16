@@ -53,6 +53,10 @@ module.exports = {
                     light: '#e0e6ed',
                     dark: '#888ea8',
                 },
+                pending: '#FFC107',
+                failed: '#F44336',
+                refunded: '#2196F3',
+                cancelled: '#9E9E9E',
             },
             fontFamily: {
                 nunito: ['Nunito', 'sans-serif'],
