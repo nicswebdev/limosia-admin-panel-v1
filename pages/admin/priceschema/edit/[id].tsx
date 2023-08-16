@@ -57,8 +57,6 @@ export default function UpdatePriceSchema() {
                 router.push('/admin/priceschema');
             }
         } catch (error) {
-            console.log(error);
-
             if (axios.isAxiosError(error)) {
                 MySwal.fire({
                     title: error.response?.data.message,
