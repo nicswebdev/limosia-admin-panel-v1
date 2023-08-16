@@ -3,11 +3,8 @@ import { useDispatch } from 'react-redux';
 import { setPageTitle } from '@/store/themeConfigSlice';
 import Breadcrumb from '@/components/Layouts/Breadcrumb';
 import { DataTable } from 'mantine-datatable';
-import { ActionIcon, Group } from '@mantine/core';
-import { PencilIcon } from '@/src/assets/icons/Pencil.icon';
+import { Group } from '@mantine/core';
 import { EyeIcon } from '@/src/assets/icons/Eye.icon';
-import TrashIcon from '@/src/assets/icons/Trash.icon';
-import { PlusIcon } from '@/src/assets/icons/Plus.icon';
 import Link from 'next/link';
 import Orders from '@/src/data/Orders.json';
 
@@ -65,17 +62,11 @@ export default function OrderIndex() {
                                             accessor: 'actions',
                                             title: 'Actions',
                                             textAlignment: 'right',
-                                            render: () => (
+                                            render: ({ id }: any) => (
                                                 <Group spacing={10} position="right" noWrap>
-                                                    <ActionIcon color="green">
-                                                        <EyeIcon className="aspect-square h-5 text-ingfo" />
-                                                    </ActionIcon>
-                                                    <ActionIcon color="blue">
-                                                        <PencilIcon className="aspect-square h-5 text-info" />
-                                                    </ActionIcon>
-                                                    <ActionIcon color="red">
-                                                        <TrashIcon className="aspect-square h-5 text-danger" />
-                                                    </ActionIcon>
+                                                    <Link href={`orders/${id}`} className="text-success">
+                                                        <EyeIcon className=" aspect-square h-5" />
+                                                    </Link>
                                                 </Group>
                                             ),
                                         },

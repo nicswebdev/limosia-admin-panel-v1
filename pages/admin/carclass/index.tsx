@@ -18,7 +18,7 @@ import { authConfig } from '@/src/shared/config';
 
 const CarClassIndex = () => {
     const PAGE_SIZE = 10;
-    const BEHost = String(process.env.NEXT_PUBLIC_BACKEND_HOST);
+
     const dispatch = useDispatch();
     const router = useRouter();
     const MySwal = withReactContent(Swal);

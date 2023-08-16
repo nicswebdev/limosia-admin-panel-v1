@@ -14,15 +14,16 @@
         "pickup_point": "Aguila",
         "destination_point": "Maxville",
         "range": 10,
-        "pickup_date": "2019-03-30T11:44:43 -08:00",
-        "pickup_time": "2023-06-23T12:28:25 -08:00",
+        "pickup_date": "2019-03-30",
+        "pickup_time": "08:00",
         "flight_number": "d7ce0d9c-ff0f-43b6-93b3-fca0e3123fae",
         "total_guest": 10,
-        "car_class": 0,
+        "car_class": 1,
         "price_schema": 0,
         "order_currency": 0,
         "payment_status": "complete",
-        "guest_id": 0
+        "guest_id": 0,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d350928b7ec61aed1",
@@ -39,15 +40,16 @@
         "pickup_point": "Thatcher",
         "destination_point": "Cetronia",
         "range": 10,
-        "pickup_date": "2015-04-11T10:15:58 -08:00",
-        "pickup_time": "2017-02-04T12:37:58 -08:00",
+        "pickup_date": "2015-04-11",
+        "pickup_time": "08:00",
         "flight_number": "0ded3166-ff43-45a9-aa01-7344d69a5d83",
         "total_guest": 10,
         "car_class": 1,
         "price_schema": 1,
         "order_currency": 1,
         "payment_status": "complete",
-        "guest_id": 1
+        "guest_id": 1,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91da865608abfda1bc5",
@@ -64,15 +66,16 @@
         "pickup_point": "Graniteville",
         "destination_point": "Snowville",
         "range": 10,
-        "pickup_date": "2016-03-18T06:12:51 -08:00",
-        "pickup_time": "2019-10-25T04:23:08 -08:00",
+        "pickup_date": "2016-03-18",
+        "pickup_time": "08:00",
         "flight_number": "b06e484c-c5e0-434b-ada3-d3989e1f2607",
         "total_guest": 10,
-        "car_class": 2,
+        "car_class": 1,
         "price_schema": 2,
         "order_currency": 2,
         "payment_status": "complete",
-        "guest_id": 2
+        "guest_id": 2,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d1aa234bf07cb648d",
@@ -89,15 +92,16 @@
         "pickup_point": "Woodruff",
         "destination_point": "Richmond",
         "range": 10,
-        "pickup_date": "2020-05-03T12:31:21 -08:00",
-        "pickup_time": "2014-08-07T02:14:33 -08:00",
+        "pickup_date": "2020-05-03",
+        "pickup_time": "08:00",
         "flight_number": "5b02eb61-7ba1-470e-bae9-12f7863c6be0",
         "total_guest": 10,
         "car_class": 3,
         "price_schema": 3,
         "order_currency": 3,
         "payment_status": "complete",
-        "guest_id": 3
+        "guest_id": 3,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91dd94ed5f63b16520a",
@@ -114,15 +118,16 @@
         "pickup_point": "Mapletown",
         "destination_point": "Sedley",
         "range": 10,
-        "pickup_date": "2021-02-13T03:10:02 -08:00",
-        "pickup_time": "2021-09-27T05:27:31 -08:00",
+        "pickup_date": "2021-02-13",
+        "pickup_time": "08:00",
         "flight_number": "23245f43-1711-470c-97b0-72327bb464b5",
         "total_guest": 10,
-        "car_class": 4,
+        "car_class": 1,
         "price_schema": 4,
         "order_currency": 4,
         "payment_status": "complete",
-        "guest_id": 4
+        "guest_id": 4,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91db60d183588677f25",
@@ -139,15 +144,16 @@
         "pickup_point": "Welch",
         "destination_point": "Dyckesville",
         "range": 10,
-        "pickup_date": "2022-02-19T11:57:56 -08:00",
-        "pickup_time": "2017-10-05T07:59:15 -08:00",
+        "pickup_date": "2022-02-19",
+        "pickup_time": "08:00",
         "flight_number": "3d9bc278-ecf6-43cd-be8a-e9feebbdcdb9",
         "total_guest": 10,
-        "car_class": 5,
+        "car_class": 1,
         "price_schema": 5,
         "order_currency": 5,
         "payment_status": "complete",
-        "guest_id": 5
+        "guest_id": 5,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d4e5e83850564a1ef",
@@ -164,15 +170,16 @@
         "pickup_point": "Warren",
         "destination_point": "Cassel",
         "range": 10,
-        "pickup_date": "2020-10-01T04:12:41 -08:00",
-        "pickup_time": "2015-11-14T10:58:53 -08:00",
+        "pickup_date": "2020-10-01",
+        "pickup_time": "08:00",
         "flight_number": "50e5a29a-1f66-48af-bb41-26b6f701ed3e",
         "total_guest": 10,
         "car_class": 6,
         "price_schema": 6,
         "order_currency": 6,
         "payment_status": "complete",
-        "guest_id": 6
+        "guest_id": 6,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d84e3e23d5697a0f0",
@@ -189,15 +196,16 @@
         "pickup_point": "Grenelefe",
         "destination_point": "Linwood",
         "range": 10,
-        "pickup_date": "2017-04-13T06:14:28 -08:00",
-        "pickup_time": "2018-04-25T03:25:36 -08:00",
+        "pickup_date": "2017-04-13",
+        "pickup_time": "08:00",
         "flight_number": "b54d3b27-4475-47cd-9b41-7496a7947c92",
         "total_guest": 10,
         "car_class": 7,
         "price_schema": 7,
         "order_currency": 7,
         "payment_status": "complete",
-        "guest_id": 7
+        "guest_id": 7,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91deca84346803014f7",
@@ -214,15 +222,16 @@
         "pickup_point": "Lloyd",
         "destination_point": "Comptche",
         "range": 10,
-        "pickup_date": "2020-11-14T04:41:58 -08:00",
-        "pickup_time": "2020-12-21T04:15:07 -08:00",
+        "pickup_date": "2020-11-14",
+        "pickup_time": "08:00",
         "flight_number": "eff84219-7485-4c67-89a2-8f1ae70bdc61",
         "total_guest": 10,
         "car_class": 8,
         "price_schema": 8,
         "order_currency": 8,
         "payment_status": "complete",
-        "guest_id": 8
+        "guest_id": 8,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91dfa28104c26aecc43",
@@ -239,15 +248,16 @@
         "pickup_point": "Monument",
         "destination_point": "Bath",
         "range": 10,
-        "pickup_date": "2016-04-20T06:23:51 -08:00",
-        "pickup_time": "2017-02-11T09:17:07 -08:00",
+        "pickup_date": "2016-04-20",
+        "pickup_time": "08:00",
         "flight_number": "43b709b1-545f-418e-9961-473126feb86d",
         "total_guest": 10,
         "car_class": 9,
         "price_schema": 9,
         "order_currency": 9,
         "payment_status": "complete",
-        "guest_id": 9
+        "guest_id": 9,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d474ea5517e982ebd",
@@ -264,15 +274,16 @@
         "pickup_point": "Gouglersville",
         "destination_point": "Beaverdale",
         "range": 10,
-        "pickup_date": "2015-03-02T12:34:13 -08:00",
-        "pickup_time": "2022-01-03T10:07:08 -08:00",
+        "pickup_date": "2015-03-02",
+        "pickup_time": "08:00",
         "flight_number": "4d67d97d-f3b6-492c-a6e0-82f4f2f8f3c1",
         "total_guest": 10,
         "car_class": 10,
         "price_schema": 10,
         "order_currency": 10,
         "payment_status": "complete",
-        "guest_id": 10
+        "guest_id": 10,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d7aaeaa5be37bf6bc",
@@ -289,15 +300,16 @@
         "pickup_point": "Rowe",
         "destination_point": "Dundee",
         "range": 10,
-        "pickup_date": "2017-07-24T03:16:35 -08:00",
-        "pickup_time": "2022-10-13T05:52:28 -08:00",
+        "pickup_date": "2017-07-24",
+        "pickup_time": "08:00",
         "flight_number": "91c3f85a-3f26-424c-8388-2de2562c4475",
         "total_guest": 10,
         "car_class": 11,
         "price_schema": 11,
         "order_currency": 11,
         "payment_status": "complete",
-        "guest_id": 11
+        "guest_id": 11,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d2263c3f78b4ebd2a",
@@ -314,15 +326,16 @@
         "pickup_point": "Nogal",
         "destination_point": "Islandia",
         "range": 10,
-        "pickup_date": "2020-05-30T05:49:19 -08:00",
-        "pickup_time": "2018-04-15T10:33:11 -08:00",
+        "pickup_date": "2020-05-30",
+        "pickup_time": "08:00",
         "flight_number": "01fd3fc9-25f8-47de-9e4b-f02819cf1d61",
         "total_guest": 10,
         "car_class": 12,
         "price_schema": 12,
         "order_currency": 12,
         "payment_status": "complete",
-        "guest_id": 12
+        "guest_id": 12,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91dcfc5c00af03cf798",
@@ -339,15 +352,16 @@
         "pickup_point": "Sheatown",
         "destination_point": "Rote",
         "range": 10,
-        "pickup_date": "2018-04-28T12:55:54 -08:00",
-        "pickup_time": "2019-10-22T01:01:52 -08:00",
+        "pickup_date": "2018-04-28",
+        "pickup_time": "08:00",
         "flight_number": "956026b6-3674-4247-a33b-3c6a65d8beb6",
         "total_guest": 10,
         "car_class": 13,
         "price_schema": 13,
         "order_currency": 13,
         "payment_status": "complete",
-        "guest_id": 13
+        "guest_id": 13,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d2a6ddc4a32a04852",
@@ -364,15 +378,16 @@
         "pickup_point": "Healy",
         "destination_point": "Rodman",
         "range": 10,
-        "pickup_date": "2017-11-07T05:40:34 -08:00",
-        "pickup_time": "2015-10-23T11:52:58 -08:00",
+        "pickup_date": "2017-11-07",
+        "pickup_time": "08:00",
         "flight_number": "99d08e67-ec88-42c2-9321-e5e60299dd53",
         "total_guest": 10,
         "car_class": 14,
         "price_schema": 14,
         "order_currency": 14,
         "payment_status": "complete",
-        "guest_id": 14
+        "guest_id": 14,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91dc551d46d9aaee65a",
@@ -389,15 +404,16 @@
         "pickup_point": "Caspar",
         "destination_point": "Bordelonville",
         "range": 10,
-        "pickup_date": "2017-07-17T02:04:39 -08:00",
-        "pickup_time": "2016-10-05T04:02:36 -08:00",
+        "pickup_date": "2017-07-17",
+        "pickup_time": "08:00",
         "flight_number": "4422100f-ec68-42e0-9ee0-ab418b7bcb1a",
         "total_guest": 10,
         "car_class": 15,
         "price_schema": 15,
         "order_currency": 15,
         "payment_status": "complete",
-        "guest_id": 15
+        "guest_id": 15,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91dc6b997d47ebcfb6c",
@@ -414,15 +430,16 @@
         "pickup_point": "Greenfields",
         "destination_point": "Bodega",
         "range": 10,
-        "pickup_date": "2015-08-16T08:09:02 -08:00",
-        "pickup_time": "2021-10-13T10:56:54 -08:00",
+        "pickup_date": "2015-08-16",
+        "pickup_time": "08:00",
         "flight_number": "21f0c250-e90c-413e-b0a6-7d95a15894b0",
         "total_guest": 10,
         "car_class": 16,
         "price_schema": 16,
         "order_currency": 16,
         "payment_status": "complete",
-        "guest_id": 16
+        "guest_id": 16,
+        "created_at": "2019-03-30T11:44:43-08:00"
     },
     {
         "id": "64d0a91d4b82cb7ab716590c",
@@ -439,14 +456,15 @@
         "pickup_point": "Biddle",
         "destination_point": "Hoehne",
         "range": 10,
-        "pickup_date": "2019-09-24T04:54:17 -08:00",
-        "pickup_time": "2017-07-16T09:25:07 -08:00",
+        "pickup_date": "2019-09-24",
+        "pickup_time": "08:00",
         "flight_number": "b8124c24-0674-416b-95a3-27cd35a421e9",
         "total_guest": 10,
         "car_class": 17,
         "price_schema": 17,
         "order_currency": 17,
         "payment_status": "complete",
-        "guest_id": 17
+        "guest_id": 17,
+        "created_at": "2019-03-30T11:44:43-08:00"
     }
 ]
