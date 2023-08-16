@@ -54,6 +54,8 @@ export default function CreateCarClass() {
                 router.push('/admin/carclass');
             }
         } catch (error) {
+            console.log(error);
+
             if (axios.isAxiosError(error)) {
                 MySwal.fire({
                     title: error.response?.data.message,
