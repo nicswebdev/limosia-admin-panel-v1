@@ -91,8 +91,8 @@ export default function CreateCarClass() {
                 <div className="min-h-screen pt-5">
                     <div className="panel h-full">
                         <div className="mb-5 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-                            <h5 className="text-lg font-semibold dark:text-white-light">Create Car Class Data</h5>
-                            <Link href="/admin/airport" className="btn btn-primary gap-2">
+                            <h5 className="text-lg font-semibold dark:text-white-light">Create Car Class</h5>
+                            <Link href="/admin/carclass" className="btn btn-primary gap-2">
                                 Go Back
                             </Link>
                         </div>

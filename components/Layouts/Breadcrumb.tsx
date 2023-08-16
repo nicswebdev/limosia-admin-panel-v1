@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 export default function Breadcrumb() {
     const router = useRouter();
 
-    const currentPage = router.pathname.split('/');
+    const currentPage = router.asPath.split('/');
 
     return (
         <ul className="flex space-x-2 rtl:space-x-reverse">
@@ -25,9 +25,13 @@ export default function Breadcrumb() {
             {currentPage.slice(-1).includes('dashboard') ? (
                 <> </>
             ) : (
-                <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                    <span className="capitalize">{currentPage.slice(-1)}</span>
-                </li>
+                currentPage.slice(2).map((val, idx) => {
+                    return (
+                        <li key={`breadcrumb-${idx}`} className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+                            <span className="capitalize">{val}</span>
+                        </li>
+                    );
+                })
             )}
         </ul>
     );

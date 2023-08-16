@@ -113,7 +113,7 @@ export default function UpdateAirport() {
                 <div className="min-h-screen pt-5">
                     <div className="panel h-full">
                         <div className="mb-5 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-                            <h5 className="text-lg font-semibold dark:text-white-light">Create Airport Data</h5>
+                            <h5 className="text-lg font-semibold dark:text-white-light">Edit Airport</h5>
                             <Link href="/admin/airport" className="btn btn-primary gap-2">
                                 Go Back
                             </Link>

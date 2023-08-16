@@ -6,6 +6,7 @@ import { createWrapper } from 'next-redux-wrapper';
 import themeConfigSlice from './themeConfigSlice';
 import { userReducer } from './userSlice';
 import { authReducer } from './authSlice';
+import { orderReducer } from './orderSlice';
 
 const persistConfig = {
     key: 'limosia',
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     themeConfig: themeConfigSlice,
     auth: authReducer,
     user: userReducer,
+    order: orderReducer,
 });
 
 const persistedReducer = persistReducer<IRootState>(persistConfig, rootReducer);

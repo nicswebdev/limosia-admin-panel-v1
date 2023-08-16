@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { PlusIcon } from '@/src/assets/icons/Plus.icon';
 import { fetchUsersList } from '@/store/userSlice';
 import { AppDispatch, IRootState } from '@/store';
+import dayjs from 'dayjs';
 
 export default function UsersIndex() {
     const PAGE_SIZE = 5;
@@ -51,10 +52,10 @@ export default function UsersIndex() {
                     <div className="panel h-full">
                         <div className="mb-5 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
                             <h5 className="text-lg font-semibold dark:text-white-light">Users Data</h5>
-                            <Link href="carclass" className="btn btn-primary gap-2">
+                            {/* <Link href="carclass" className="btn btn-primary gap-2">
                                 <PlusIcon className="aspect-square h-5" />
                                 Add New
-                            </Link>
+                            </Link> */}
                         </div>
                         <div>
                             <div className="rounded-lg bg-white dark:bg-black">
@@ -72,32 +73,11 @@ export default function UsersIndex() {
                                         { accessor: 'guest.zip_code', title: 'Zip Code' },
                                         {
                                             accessor: 'created_at',
-                                            render: () =>
-                                                new Date().toLocaleString('en-US', {
-                                                    weekday: 'short',
-                                                    year: 'numeric',
-                                                    month: 'short',
-                                                    day: 'numeric',
-                                                    timeZoneName: 'short',
-                                                    hour12: true,
-                                                    hour: '2-digit',
-                                                    minute: '2-digit',
-                                                }),
+                                            render: (item) => dayjs(new Date(item.created_at)).format('D MMMM YYYY, hh:mm A'),
                                         },
                                         {
                                             accessor: 'updated_at',
-                                            render: () =>
-                                                new Date().toLocaleString('en-US', {
-                                                    weekday: 'short',
-                                                    year: 'numeric',
-                                                    month: 'short',
-                                                    day: 'numeric',
-                                                    timeZoneName: 'short',
-                                                    hour12: true,
-                                                    hour: '2-digit',
-                                                    minute: '2-digit',
-                                                    second: '2-digit',
-                                                }),
+                                            render: (item) => dayjs(new Date(item.updated_at)).format('D MMMM YYYY, hh:mm A'),
                                         },
                                         {
                                             accessor: 'actions',
