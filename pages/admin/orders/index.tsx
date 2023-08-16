@@ -87,7 +87,7 @@ export default function OrderIndex() {
                                             accessor: 'payment_status',
                                             title: 'Payment Status',
                                             render: ({ payment_status }: Order) => {
-                                                switch (payment_status.name) {
+                                                switch (payment_status?.name) {
                                                     case 'Completed':
                                                         return <span className="badge bg-success">{payment_status.name}</span>;
 
@@ -106,7 +106,7 @@ export default function OrderIndex() {
                                             accessor: 'order_status',
                                             title: 'Order Status',
                                             render: ({ order_status }: Order) => {
-                                                switch (order_status.name) {
+                                                switch (order_status?.name) {
                                                     case 'Completed':
                                                     case 'Payment Completed':
                                                         return <span className="badge bg-success">{order_status.name}</span>;

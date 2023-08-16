@@ -91,7 +91,7 @@ export default function OrderDetail() {
                     </div>
                     <div className="mb-5 mt-0 flex flex-col gap-3 lg:mb-0 lg:mt-5 lg:flex-row">
                         <h2 className="my-2 break-words text-2xl font-bold">Order: #{order.order_no}</h2>
-                        {order.payment_status.name === 'Completed' && <span className="badge badge-outline-success flex w-fit items-center">Completed</span>}
+                        {order.payment_status?.name === 'Completed' && <span className="badge badge-outline-success flex w-fit items-center">Completed</span>}
                     </div>
                     <div className="mb-5">
                         <span>

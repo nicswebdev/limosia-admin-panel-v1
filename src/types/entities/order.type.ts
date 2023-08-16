@@ -29,8 +29,8 @@ export type Order = {
     total_price: number;
     price_schema_name: string;
     order_currency: string;
-    payment_status: Status;
-    order_status: Status;
+    payment_status: Status | null;
+    order_status: Status | null;
     created_at: string;
     updated_at: string;
     delete_row: boolean;
