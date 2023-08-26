@@ -22,6 +22,7 @@ export default function OrderIndex() {
     const { orders, meta } = useSelector((state: IRootState) => state.order);
 
     const [page, setPage] = useState(1);
+    const [search, setSearch] = useState<string | undefined>();
     const [records, setRecords] = useState(Orders.slice(0, PAGE_SIZE));
 
     useEffect(() => {
@@ -33,38 +34,42 @@ export default function OrderIndex() {
     useEffect(() => {
         dispatch(setPageTitle('Orders Data'));
 
-        const fetchOrders = async () => {
-            const params = {
-                limit: PAGE_SIZE,
-                page,
-                sort: 'ASC',
-                // search: search,
+        const debounceTimeout = setTimeout(() => {
+            const fetchOrders = async () => {
+                const params = {
+                    limit: PAGE_SIZE,
+                    page,
+                    sort: 'ASC',
+                    search: search ? search : null,
+                };
+
+                try {
+                    const response = await dispatch(fetchOrdersList(params)).unwrap();
+
+                    console.log({ response });
+                } catch (error: any) {
+                    console.log(error);
+
+                    MySwal.fire({
+                        title: error.message!,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        showCloseButton: true,
+                        customClass: {
+                            popup: `color-danger`,
+                        },
+                    });
+                }
             };
+            fetchOrders();
+        }, 300);
 
-            try {
-                const response = await dispatch(fetchOrdersList(params)).unwrap();
-
-                console.log({ response });
-            } catch (error: any) {
-                console.log(error);
-
-                MySwal.fire({
-                    title: error.message!,
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    showCloseButton: true,
-                    customClass: {
-                        popup: `color-danger`,
-                    },
-                });
-            }
-        };
-        fetchOrders();
+        return () => clearTimeout(debounceTimeout);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch, page]);
+    }, [dispatch, page, search]);
 
     return (
         <>
@@ -75,11 +80,15 @@ export default function OrderIndex() {
                     <div className="panel h-full">
                         <div className="mb-5 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
                             <h5 className="text-lg font-semibold dark:text-white-light">Orders Data</h5>
+                            <div className="ltr:ml-auto rtl:mr-auto">
+                                <input type="text" className="form-input w-auto" placeholder="Search Order No..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                            </div>
                         </div>
                         <div>
                             <div className="rounded-lg bg-white dark:bg-black">
                                 <DataTable
                                     columns={[
+                                        { accessor: 'order_no', title: 'Order No' },
                                         { accessor: 'f_name', title: 'First Name' },
                                         { accessor: 'l_name', title: 'Last Name' },
                                         { accessor: 'email', title: 'Email' },
