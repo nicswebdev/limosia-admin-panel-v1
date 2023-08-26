@@ -108,6 +108,9 @@ export default function OrderIndex() {
 
                                                     case 'Denied':
                                                         return <span className="badge bg-failed">{payment_status.name}</span>;
+
+                                                    default:
+                                                        return <span className="badge bg-slate-600">{payment_status?.name ?? <i>[Status not set]</i>}</span>;
                                                 }
                                             },
                                         },
@@ -135,6 +138,9 @@ export default function OrderIndex() {
                                                     case 'Expired':
                                                     case 'Payment Denied':
                                                         return <span className="badge bg-failed">{order_status.name} Pending</span>;
+
+                                                    default:
+                                                        return <span className="badge bg-slate-600">{order_status?.name ?? <i>[Status not set]</i>}</span>;
                                                 }
                                             },
                                         },
