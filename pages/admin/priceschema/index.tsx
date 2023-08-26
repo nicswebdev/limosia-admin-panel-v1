@@ -134,8 +134,9 @@ export default function PriceSchemaIndex() {
                                         { accessor: 'id' },
                                         { accessor: 'tier_name', title: 'Tier Name' },
                                         { accessor: 'car_class.name', title: 'Car Class Name' },
-                                        { accessor: 'airport.name', title: 'Airport' },
-                                        { accessor: 'range_km', title: 'Range (in KM)' },
+                                        { accessor: 'airport.name', title: 'Airport Name' },
+                                        { accessor: 'from_range_km', title: 'From Range', render: ({ from_range_km }) => <>{from_range_km} km</> },
+                                        { accessor: 'to_range_km', title: 'To Range', render: ({ to_range_km }) => <>{to_range_km} km</> },
                                         {
                                             accessor: 'base_price',
                                             title: 'Base Price',
