@@ -36,11 +36,11 @@ export default function AirportIndex() {
         },
         statusCode: 0,
     });
-    const [records, setRecords] = useState(airports.items.slice(0, PAGE_SIZE));
+    const [records, setRecords] = useState(airports.items);
     const [deleteModal, setDeleteModal] = useState(false);
     const [id, setID] = useState('');
 
-    const deleteCarClass = async () => {
+    const deleteAirport = async () => {
         const token = localStorage.getItem(authConfig.storageTokenName);
 
         try {
@@ -91,35 +91,26 @@ export default function AirportIndex() {
     useEffect(() => {
         let source = axios.CancelToken.source();
 
-        const fetchCarClasses = async () => {
-            const from = (page - 1) * PAGE_SIZE;
-            const to = from + PAGE_SIZE;
-
+        const fetchAirports = async () => {
             try {
-                const url = `${process.env.NEXT_PUBLIC_API_URL}airports?page=1&limit=10&sortBy=ASC`;
+                const url = `${process.env.NEXT_PUBLIC_API_URL}airports?page=${page}&limit=${PAGE_SIZE}&sortBy=ASC`;
 
                 const response = await axios.get(url, {
                     cancelToken: source.token,
                 });
 
                 setAirports(response.data);
-                setRecords(response.data.items.slice(from, to));
+                setRecords(response.data.items);
             } catch (error) {
                 console.log(error);
             }
         };
 
-        fetchCarClasses();
+        fetchAirports();
 
         return () => {
             source.cancel();
         };
-    }, []);
-
-    useEffect(() => {
-        const from = (page - 1) * PAGE_SIZE;
-        const to = from + PAGE_SIZE;
-        setRecords(airports.items.slice(from, to));
     }, [page]);
 
     return (
@@ -179,7 +170,7 @@ export default function AirportIndex() {
                 </div>
             </div>
 
-            <CustomModal title="Are you sure?" modal={deleteModal} setModal={setDeleteModal} action={deleteCarClass}>
+            <CustomModal title="Are you sure?" modal={deleteModal} setModal={setDeleteModal} action={deleteAirport}>
                 Your action cannot be undone.
             </CustomModal>
         </>
