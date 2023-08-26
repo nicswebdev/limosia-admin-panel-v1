@@ -139,7 +139,7 @@ export default function PriceSchemaIndex() {
                                         {
                                             accessor: 'base_price',
                                             title: 'Base Price',
-                                            render: ({ base_price }) => <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(base_price)}</span>,
+                                            render: ({ base_price }) => <span>{new Intl.NumberFormat('en-US').format(base_price)}</span>,
                                         },
                                         {
                                             accessor: 'actions',

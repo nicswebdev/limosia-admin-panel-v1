@@ -219,7 +219,6 @@ export default function UpdatePriceSchema() {
                                                         <NumericFormat
                                                             onChange={(e) => setFieldValue('base_price', e.target.value)}
                                                             className="form-input"
-                                                            prefix="$"
                                                             thousandSeparator
                                                             value={values.base_price}
                                                         />

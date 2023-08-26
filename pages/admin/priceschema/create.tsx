@@ -191,7 +191,7 @@ export default function CreatePriceSchema() {
                                             {({ form }: any) => {
                                                 const { setFieldValue } = form;
 
-                                                return <NumericFormat onChange={(e) => setFieldValue('base_price', e.target.value)} className="form-input" prefix="$" thousandSeparator />;
+                                                return <NumericFormat onChange={(e) => setFieldValue('base_price', e.target.value)} className="form-input" thousandSeparator />;
                                             }}
                                         </Field>
                                         <ErrorMessage name="base_price" render={(msg) => <InputErrorMessage message={msg} />} />
