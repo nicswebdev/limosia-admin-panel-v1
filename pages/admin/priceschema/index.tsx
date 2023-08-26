@@ -36,7 +36,7 @@ export default function PriceSchemaIndex() {
         statusCode: 0,
     });
 
-    const [records, setRecords] = useState(priceSchemas.items.slice(0, PAGE_SIZE));
+    const [records, setRecords] = useState(priceSchemas.items);
     const [deleteModal, setDeleteModal] = useState(false);
     const [id, setID] = useState('');
 
@@ -91,35 +91,25 @@ export default function PriceSchemaIndex() {
     useEffect(() => {
         let source = axios.CancelToken.source();
 
-        const fetchCarClasses = async () => {
-            const from = (page - 1) * PAGE_SIZE;
-            const to = from + PAGE_SIZE;
-
+        const fetchPriceSchemas = async () => {
             try {
-                const url = `${process.env.NEXT_PUBLIC_API_URL}price-schema?page=1&limit=10&sortBy=ASC`;
+                const url = `${process.env.NEXT_PUBLIC_API_URL}price-schema?page=${page}&limit=${PAGE_SIZE}&sortBy=ASC`;
 
                 const response = await axios.get(url, {
                     cancelToken: source.token,
                 });
 
                 setPriceSchemas(response.data);
-                setRecords(response.data.items.slice(from, to));
+                setRecords(response.data.items);
             } catch (error) {
                 console.log(error);
             }
         };
-
-        fetchCarClasses();
+        fetchPriceSchemas();
 
         return () => {
             source.cancel();
         };
-    }, []);
-
-    useEffect(() => {
-        const from = (page - 1) * PAGE_SIZE;
-        const to = from + PAGE_SIZE;
-        setRecords(priceSchemas.items.slice(from, to));
     }, [page]);
 
     return (

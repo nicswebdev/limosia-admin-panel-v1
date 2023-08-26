@@ -36,7 +36,7 @@ const CarClassIndex = () => {
         },
         statusCode: 0,
     });
-    const [records, setRecords] = useState(carClasses.items.slice(0, PAGE_SIZE));
+    const [records, setRecords] = useState(carClasses.items);
     const [deleteModal, setDeleteModal] = useState(false);
     const [id, setID] = useState('');
 
@@ -92,18 +92,15 @@ const CarClassIndex = () => {
         let source = axios.CancelToken.source();
 
         const fetchCarClasses = async () => {
-            const from = (page - 1) * PAGE_SIZE;
-            const to = from + PAGE_SIZE;
-
             try {
-                const url = `${process.env.NEXT_PUBLIC_API_URL}car-class?page=1&limit=10&sortBy=ASC`;
+                const url = `${process.env.NEXT_PUBLIC_API_URL}car-class?page=${page}&limit=${PAGE_SIZE}&sortBy=ASC`;
 
                 const response = await axios.get(url, {
                     cancelToken: source.token,
                 });
 
                 setCarClasses(response.data);
-                setRecords(response.data.items.slice(from, to));
+                setRecords(response.data.items);
             } catch (error) {
                 console.log(error);
             }
@@ -114,12 +111,6 @@ const CarClassIndex = () => {
         return () => {
             source.cancel();
         };
-    }, []);
-
-    useEffect(() => {
-        const from = (page - 1) * PAGE_SIZE;
-        const to = from + PAGE_SIZE;
-        setRecords(carClasses.items.slice(from, to));
     }, [page]);
 
     return (
