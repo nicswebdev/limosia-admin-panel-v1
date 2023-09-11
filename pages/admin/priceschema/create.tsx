@@ -28,12 +28,10 @@ export default function CreatePriceSchema() {
     const SubmitForm = async (values: PriceSchemaType) => {
         const token = localStorage.getItem(authConfig.storageTokenName);
         const price = values.base_price.toString();
-
         let data = {
             ...values,
             base_price: Number(price.replace(/[$,.]/g, '')),
         };
-
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}price-schema`, data, {
                 headers: {
@@ -180,9 +178,14 @@ export default function CreatePriceSchema() {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="range_km">Range KM</label>
-                                        <Field id="range_km" className="form-input" name="range_km" type="number" />
-                                        <ErrorMessage name="range_km" render={(msg) => <InputErrorMessage message={msg} />} />
+                                        <label htmlFor="from_range_km">From Range KM</label>
+                                        <Field id="from_range_km" className="form-input" name="from_range_km" type="number" />
+                                        <ErrorMessage name="from_range_km" render={(msg) => <InputErrorMessage message={msg} />} />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="to_range_km">To Range KM</label>
+                                        <Field id="to_range_km" className="form-input" name="to_range_km" type="number" />
+                                        <ErrorMessage name="to_range_km" render={(msg) => <InputErrorMessage message={msg} />} />
                                     </div>
 
                                     <div>
