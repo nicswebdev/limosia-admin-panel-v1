@@ -105,7 +105,8 @@ export default function UpdatePriceSchema() {
                         airport_id: priceSchema.value.data.airport.id,
                         car_class_id: priceSchema.value.data.car_class.id,
                         base_price: priceSchema.value.data.base_price,
-                        range_km: priceSchema.value.data.range_km,
+                        from_range_km: priceSchema.value.data.from_range_km,
+                        to_range_km:priceSchema.value.data.to_range_km
                     });
                     setAirports(
                         airports.value.data.items.map((airport: any) => ({
@@ -205,9 +206,14 @@ export default function UpdatePriceSchema() {
                                             <ErrorMessage name="car_class_id" render={(msg) => <InputErrorMessage message={msg} />} />
                                         </div>
                                         <div>
-                                            <label htmlFor="range_km">Range KM</label>
-                                            <Field id="range_km" className="form-input" name="range_km" type="number" />
-                                            <ErrorMessage name="range_km" render={(msg) => <InputErrorMessage message={msg} />} />
+                                            <label htmlFor="from_range_km">From Range KM</label>
+                                            <Field id="from_range_km" className="form-input" name="from_range_km" type="number" />
+                                            <ErrorMessage name="from_range_km" render={(msg) => <InputErrorMessage message={msg} />} />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="to_range_km">to Range KM</label>
+                                            <Field id="to_range_km" className="form-input" name="to_range_km" type="number" />
+                                            <ErrorMessage name="to_range_km" render={(msg) => <InputErrorMessage message={msg} />} />
                                         </div>
                                         <div>
                                             <label htmlFor="base_price">Base Price</label>
