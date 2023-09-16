@@ -12,6 +12,11 @@ import { AirportType } from '@/src/types/Airport.type';
 import InputErrorMessage from '@/components/InputErrorMessage';
 import { useRouter } from 'next/navigation';
 import { authConfig } from '@/src/shared/config';
+declare global {
+    interface Window {
+        initAutocomplete: () => void;
+    }
+}
 
 export default function CreateAirport() {
     // const formik = useFormikContext(); // Get the Formik context
@@ -95,7 +100,6 @@ export default function CreateAirport() {
                 // console.log(autocompleteOrigin);
                 autocompleteOrigin.setTypes(['airport']);
                 autocompleteOrigin.addListener('place_changed', () => {
-
                     // setAutoCompleteClicked(true);
                     const place: google.maps.places.PlaceResult | null = autocompleteOrigin.getPlace();
                     // console.log(place);
