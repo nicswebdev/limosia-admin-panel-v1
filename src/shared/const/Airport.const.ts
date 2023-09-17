@@ -3,12 +3,11 @@ import { AirportType } from '@/src/types/Airport.type';
 
 export const initialValues: AirportType = {
     name: '',
-    latitude: '',
-    longitude: '',
+    name_from_maps:'',
+    place_id:''
 };
 
 export const addAirportSchema = Yup.object().shape({
-    name: Yup.string().required('Airport is Required'),
-    latitude: Yup.number().typeError('Latitude must be a Number').required('Latitude is Required'),
-    longitude: Yup.number().typeError('Longitude must be a Number').required('Longitude is Required'),
+    name: Yup.string().required('Airport Name is Required'),
+    name_from_maps: Yup.string().typeError('Latitude must be a String').required('Name From Maps is Required'),
 });

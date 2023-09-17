@@ -134,8 +134,7 @@ export default function AirportIndex() {
                                     columns={[
                                         { accessor: 'id' },
                                         { accessor: 'name', title: 'Airport Name' },
-                                        { accessor: 'latitude' },
-                                        { accessor: 'longitude' },
+                                        { accessor: 'name_from_maps', title:'Airport Name from Maps' },
                                         {
                                             accessor: 'actions',
                                             title: 'Actions',

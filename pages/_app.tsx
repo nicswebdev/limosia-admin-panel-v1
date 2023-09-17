@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect } from 'react';
 import Head from 'next/head';
 
 import { Provider } from 'react-redux';
@@ -44,6 +44,32 @@ const App = ({ Component, pageProps }: ExtendedAppProps) => {
     const getLayout = Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>);
     const authGuard = Component.authGuard ?? true;
     const guestGuard = Component.guestGuard ?? false;
+
+    useEffect(() => {
+        console.log('runsss');
+        const loadScript = (src: string) => {
+            const existingScript = document.querySelector(`script[src="${src}"]`) as HTMLScriptElement | null;
+            if (existingScript) {
+                return;
+            }
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = src;
+            script.async = true;
+            document.body.appendChild(script);
+        };
+
+        (window as any).googleMapsScriptLoaded = () => {
+            if ((window as any).initAutocomplete) {
+                (window as any).initAutocomplete();
+            }
+            if ((window as any).initMap) {
+                (window as any).initMap();
+            }
+        };
+
+        loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDv7zbUva4oy7ni_A7sKFYTpuE7yBhlz1E&libraries=places&callback=googleMapsScriptLoaded');
+    }, []);
 
     return (
         <Provider store={store}>

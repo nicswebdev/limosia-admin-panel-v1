@@ -1,5 +1,5 @@
 export type AirportType = {
     name: string;
-    latitude: string;
-    longitude: string;
+    name_from_maps: string;
+    place_id:string
 };

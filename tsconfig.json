@@ -17,7 +17,8 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["./*"]
-        }
+        },
+        "types": ["googlemaps"]
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/apps/todolist.tsx"],
     "exclude": ["node_modules"]
