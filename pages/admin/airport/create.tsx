@@ -93,12 +93,12 @@ export default function CreateAirport() {
         useEffect(() => {
             const initAutocomplete = () => {
                 const autocompleteOrigin = new window.google.maps.places.Autocomplete(autocompleteOriginRef.current as HTMLInputElement, {
-                    types: ['establishment'],
+                    types: ['airport'],
                     fields: ['name', 'place_id', 'types'],
                     componentRestrictions: { country: 'th' },
                 });
                 // console.log(autocompleteOrigin);
-                autocompleteOrigin.setTypes(['airport']);
+                // autocompleteOrigin.setTypes(['airport']);
                 autocompleteOrigin.addListener('place_changed', () => {
                     // setAutoCompleteClicked(true);
                     const place: google.maps.places.PlaceResult | null = autocompleteOrigin.getPlace();

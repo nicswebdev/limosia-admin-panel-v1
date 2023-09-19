@@ -75,7 +75,7 @@ const App = ({ Component, pageProps }: ExtendedAppProps) => {
         <Provider store={store}>
             <PersistGate persistor={persistor}>
                 <Head>
-                    <title>Limosia - At your Service</title>
+                    <title>Quicco - At your Service</title>
                     <meta charSet="UTF-8" />
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
