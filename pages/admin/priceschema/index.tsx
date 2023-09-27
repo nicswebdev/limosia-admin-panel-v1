@@ -15,7 +15,8 @@ import { PlusIcon } from '@/src/assets/icons/Plus.icon';
 import { CustomModal } from '@/components/CustomModal';
 import { authConfig } from '@/src/shared/config';
 
-export default function PriceSchemaIndex() {
+export default function PriceSchemaIndex({ airportData, carData }: { airportData: any; carData: any }) {
+    // console.log(airportData.items)
     const PAGE_SIZE = 10;
 
     const dispatch = useDispatch();
@@ -112,6 +113,41 @@ export default function PriceSchemaIndex() {
         };
     }, [page]);
 
+    // console.log(records);
+    const [filter, setFilter] = useState({
+        airport: '',
+        car: '',
+    });
+    const [filteredRecord, setFilteredRecord] = useState(records);
+
+    useEffect(() => {
+        if (filter.airport === '' && filter.car === '') {
+            return;
+        }
+
+        if (filter.airport && filter.car) {
+            const filtered = records.filter((item: any) => {
+                return item.airport.id == filter.airport && item.car_class.id == filter.car;
+            });
+            setFilteredRecord(filtered);
+            return;
+        }
+        if (filter.airport) {
+            const filtered = records.filter((item: any) => {
+                return item.airport.id == filter.airport;
+            });
+            setFilteredRecord(filtered);
+            return;
+        }
+        if (filter.car) {
+            const filtered = records.filter((item: any) => {
+                return item.car_class.id == filter.car;
+            });
+            setFilteredRecord(filtered);
+            return;
+        }
+        // setRecords(filtered);
+    }, [filter]);
     return (
         <>
             <div>
@@ -120,7 +156,43 @@ export default function PriceSchemaIndex() {
                 <div className="min-h-screen pt-5">
                     <div className="panel h-full">
                         <div className="mb-5 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-                            <h5 className="text-lg font-semibold dark:text-white-light">Price Schema Data</h5>
+                            <div className="grid grid-cols-3 gap-2">
+                                <h5 className="text-lg font-semibold dark:text-white-light">Price Schema Data</h5>
+                                <select
+                                    className="rounded-lg border border-2 px-2 py-1 font-bold hover:cursor-pointer"
+                                    onChange={(event) => {
+                                        setFilter((prev) => ({ ...prev, airport: event.target.value }));
+                                        // console.log(filterAirport)
+                                    }}
+                                    value={filter.airport}
+                                >
+                                    <option value={''}>Filter Airport</option>
+                                    {airportData.items.map((airport: any) => {
+                                        return (
+                                            <option key={airport.id} value={airport.id}>
+                                                {airport.name}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                                <select
+                                    className="rounded-lg border border-2 px-2 py-1 font-bold hover:cursor-pointer"
+                                    onChange={(event) => {
+                                        setFilter((prev) => ({ ...prev, car: event.target.value }));
+                                        // console.log(filterAirport)
+                                    }}
+                                    value={filter.car}
+                                >
+                                    <option value={''}>Filter Car</option>
+                                    {carData.items.map((car: any) => {
+                                        return (
+                                            <option key={car.id} value={car.id}>
+                                                {car.name}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                            </div>
 
                             <Link href="priceschema/create" className="btn btn-primary gap-2">
                                 <PlusIcon className="aspect-square h-5" />
@@ -164,7 +236,7 @@ export default function PriceSchemaIndex() {
                                             ),
                                         },
                                     ]}
-                                    records={records}
+                                    records={filter.airport || filter.car ? filteredRecord : records}
                                     totalRecords={priceSchemas.meta?.totalItems}
                                     recordsPerPage={PAGE_SIZE}
                                     page={page}
@@ -181,4 +253,17 @@ export default function PriceSchemaIndex() {
             </CustomModal>
         </>
     );
+}
+export async function getServerSideProps() {
+    const getAirportsResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}airports?page=1&limit=9999999&sortBy=ASC`);
+    const airportData = getAirportsResponse.data;
+
+    const getAllCarResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}car-class?page=1&limit=9999999&sortBy=ASC`);
+    const carData = getAllCarResponse.data;
+    return {
+        props: {
+            airportData,
+            carData,
+        },
+    };
 }
