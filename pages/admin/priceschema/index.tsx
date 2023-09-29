@@ -113,7 +113,7 @@ export default function PriceSchemaIndex({ airportData, carData }: { airportData
         };
     }, [page]);
 
-    // console.log(records);
+    console.log(records);
     const [filter, setFilter] = useState({
         airport: '',
         car: '',
@@ -210,9 +210,36 @@ export default function PriceSchemaIndex({ airportData, carData }: { airportData
                                         { accessor: 'from_range_km', title: 'From Range', render: ({ from_range_km }) => <>{from_range_km} km</> },
                                         { accessor: 'to_range_km', title: 'To Range', render: ({ to_range_km }) => <>{to_range_km} km</> },
                                         {
-                                            accessor: 'base_price',
-                                            title: 'Base Price',
-                                            render: ({ base_price }) => <span>{new Intl.NumberFormat('en-US').format(base_price)}</span>,
+                                            accessor: 'refundable_base_price_1',
+                                            title: 'Refundable Base Price 1',
+                                            render: ({ refundable_base_price_1 }) => <span>{new Intl.NumberFormat('en-US').format(refundable_base_price_1)}</span>,
+                                        },
+                                        {
+                                            accessor: 'non_refundable_base_price_1',
+                                            title: 'Non Refundable Base Price 1',
+                                            render: ({ non_refundable_base_price_1 }) => <span>{new Intl.NumberFormat('en-US').format(non_refundable_base_price_1)}</span>,
+                                        },
+                                        {
+                                            accessor: 'prebook_time_hour_1',
+                                            title: 'Prebook Time Hour 1',
+                                            render: ({ prebook_time_hour_1 }) => <span>{prebook_time_hour_1}</span>,
+                                        },
+                                        {
+                                            accessor: 'non_refundable_base_price_2',
+                                            title: 'Non Refundable Base Price 2',
+                                            render: ({ non_refundable_base_price_2 }) => (
+                                                <span>{non_refundable_base_price_2 && new Intl.NumberFormat('en-US').format(non_refundable_base_price_2)}</span>
+                                            ),
+                                        },
+                                        {
+                                            accessor: 'refundable_base_price_2',
+                                            title: 'Refundable Base Price 2',
+                                            render: ({ refundable_base_price_2 }) => <span>{refundable_base_price_2 && new Intl.NumberFormat('en-US').format(refundable_base_price_2)}</span>,
+                                        },
+                                        {
+                                            accessor: 'prebook_time_hour_2',
+                                            title: 'Prebook Time Hour 2',
+                                            render: ({ prebook_time_hour_2 }) => <span>{prebook_time_hour_2}</span>,
                                         },
                                         {
                                             accessor: 'actions',
