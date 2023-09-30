@@ -27,11 +27,11 @@ export default function UpdatePriceSchema() {
 
     const SubmitForm = async (values: PriceSchemaType) => {
         const token = localStorage.getItem(authConfig.storageTokenName);
-        const price = values.base_price.toString();
+        // const price = values.base_price.toString();
 
         let data = {
             ...values,
-            base_price: Number(price.replace(/[$,.]/g, '')),
+            // base_price: Number(price.replace(/[$,.]/g, '')),
         };
 
         try {
@@ -104,9 +104,14 @@ export default function UpdatePriceSchema() {
                         tier_name: priceSchema.value.data.tier_name,
                         airport_id: priceSchema.value.data.airport.id,
                         car_class_id: priceSchema.value.data.car_class.id,
-                        base_price: priceSchema.value.data.base_price,
+                        prebook_time_hour_1: priceSchema.value.data.prebook_time_hour_1,
+                        refundable_base_price_1: priceSchema.value.data.refundable_base_price_1,
+                        non_refundable_base_price_1: priceSchema.value.data.non_refundable_base_price_1,
+                        prebook_time_hour_2: priceSchema.value.data.prebook_time_hour_2,
+                        refundable_base_price_2: priceSchema.value.data.refundable_base_price_2,
+                        non_refundable_base_price_2: priceSchema.value.data.non_refundable_base_price_2,
                         from_range_km: priceSchema.value.data.from_range_km,
-                        to_range_km:priceSchema.value.data.to_range_km
+                        to_range_km: priceSchema.value.data.to_range_km,
                     });
                     setAirports(
                         airports.value.data.items.map((airport: any) => ({
@@ -215,9 +220,121 @@ export default function UpdatePriceSchema() {
                                             <Field id="to_range_km" className="form-input" name="to_range_km" type="number" />
                                             <ErrorMessage name="to_range_km" render={(msg) => <InputErrorMessage message={msg} />} />
                                         </div>
-                                        <div>
-                                            <label htmlFor="base_price">Base Price</label>
-                                            <Field name="base_price">
+
+                                        <div className="grid grid-cols-3 gap-4">
+                                            <div>
+                                                <label htmlFor="prebook_time_hour_1">Pre Book Time 1 (Hours)</label>
+                                                <Field name="prebook_time_hour_1">
+                                                    {({ form }: any) => {
+                                                        const { setFieldValue } = form;
+
+                                                        return (
+                                                            <NumericFormat
+                                                                value={values.prebook_time_hour_1}
+                                                                onChange={(e) => setFieldValue('prebook_time_hour_1', e.target.value ? Number(e.target.value) : null)}
+                                                                className="form-input"
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
+                                                <ErrorMessage name="prebook_time_hour_1" render={(msg) => <InputErrorMessage message={msg} />} />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="refundable_base_price_1">Refundable Base Price 1</label>
+                                                <Field name="refundable_base_price_1">
+                                                    {({ form }: any) => {
+                                                        const { setFieldValue } = form;
+                                                        return (
+                                                            <NumericFormat
+                                                                value={values.refundable_base_price_1}
+                                                                onChange={(e) => setFieldValue('refundable_base_price_1', e.target.value ? Number(e.target.value.toString().replace(/[$,.]/g, '')) : null)}
+                                                                className="form-input"
+                                                                thousandSeparator
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
+                                                <ErrorMessage name="refundable_base_price_1" render={(msg) => <InputErrorMessage message={msg} />} />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="non_refundable_base_price_1">Non Refundable Base Price 1</label>
+                                                <Field name="non_refundable_base_price_1">
+                                                    {({ form }: any) => {
+                                                        const { setFieldValue } = form;
+
+                                                        return (
+                                                            <NumericFormat
+                                                                value={values.non_refundable_base_price_1}
+                                                                onChange={(e) => setFieldValue('non_refundable_base_price_1', e.target.value ? Number(e.target.value.toString().replace(/[$,.]/g, '')) : null)}
+                                                                className="form-input"
+                                                                thousandSeparator
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
+                                                <ErrorMessage name="non_refundable_base_price_1" render={(msg) => <InputErrorMessage message={msg} />} />
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-3 gap-4">
+                                            <div>
+                                                <label htmlFor="prebook_time_hour_2">Pre Book Time 2 (Hours)</label>
+                                                <Field name="prebook_time_hour_2">
+                                                    {({ form }: any) => {
+                                                        const { setFieldValue } = form;
+
+                                                        return (
+                                                            <NumericFormat
+                                                                value={values.prebook_time_hour_2}
+                                                                onChange={(e) => setFieldValue('prebook_time_hour_2', e.target.value ? Number(e.target.value) : null)}
+                                                                className="form-input"
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
+                                                <ErrorMessage name="prebook_time_hour_2" render={(msg) => <InputErrorMessage message={msg} />} />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="refundable_base_price_2">Refundable Base Price 2</label>
+                                                <Field name="refundable_base_price_2">
+                                                    {({ form }: any) => {
+                                                        const { setFieldValue } = form;
+
+                                                        return (
+                                                            <NumericFormat
+                                                                value={values.refundable_base_price_2}
+                                                                onChange={(e) => setFieldValue('refundable_base_price_2', e.target.value ? Number(e.target.value.toString().replace(/[$,.]/g, '')) : null)}
+                                                                className="form-input"
+                                                                thousandSeparator
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
+                                                <ErrorMessage name="refundable_base_price_2" render={(msg) => <InputErrorMessage message={msg} />} />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="non_refundable_base_price_2">Non Refundable Base Price 2</label>
+                                                <Field name="non_refundable_base_price_2">
+                                                    {({ form }: any) => {
+                                                        const { setFieldValue } = form;
+
+                                                        return (
+                                                            <NumericFormat
+                                                                value={values.non_refundable_base_price_2}
+                                                                onChange={(e) => setFieldValue('non_refundable_base_price_2', e.target.value ? Number(e.target.value.toString().replace(/[$,.]/g, '')) : null)}
+                                                                className="form-input"
+                                                                thousandSeparator
+                                                            />
+                                                        );
+                                                    }}
+                                                </Field>
+                                                <ErrorMessage name="non_refundable_base_price_2" render={(msg) => <InputErrorMessage message={msg} />} />
+                                            </div>
+                                        </div>
+
+                                        {/* <div>
+                                            <label htmlFor="prebook_time_hour_1">Prebook Time Hour 1</label>
+                                            <Field name="prebook_time_hour_1 " className="form-input">
                                                 {({ form }: any) => {
                                                     const { setFieldValue } = form;
 
@@ -226,13 +343,13 @@ export default function UpdatePriceSchema() {
                                                             onChange={(e) => setFieldValue('base_price', e.target.value)}
                                                             className="form-input"
                                                             thousandSeparator
-                                                            value={values.base_price}
+                                                            value={values.prebook_time_hour_1}
                                                         />
                                                     );
                                                 }}
                                             </Field>
                                             <ErrorMessage name="base_price" render={(msg) => <InputErrorMessage message={msg} />} />
-                                        </div>
+                                        </div> */}
                                         <div>
                                             <button type="submit" className="btn btn-primary !mt-6">
                                                 Submit
