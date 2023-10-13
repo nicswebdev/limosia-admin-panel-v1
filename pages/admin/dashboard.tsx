@@ -10,6 +10,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 });
 import Link from 'next/link';
 import Breadcrumb from '@/components/Layouts/Breadcrumb';
+import OrderTable from '@/components/Tables/OrderTable';
 
 const AdminDashboard = () => {
     const dispatch = useDispatch();
@@ -400,9 +401,13 @@ const AdminDashboard = () => {
                 <Breadcrumb />
 
                 <div className="pt-5">
-                    <div className="mb-6 grid gap-6 xl:grid-cols-3">
+                    <div className="mb-6 grid gap-6 xl:grid-cols-1">
                         <div className="panel h-full xl:col-span-2">
-                            <div className="mb-5 flex items-center justify-between dark:text-white-light">
+                            <div>
+                                <OrderTable />
+                            </div>
+
+                            {/* <div className="mb-5 flex items-center justify-between dark:text-white-light">
                                 <h5 className="text-lg font-semibold">Revenue</h5>
                                 <div className="dropdown">
                                     <Dropdown
@@ -429,8 +434,8 @@ const AdminDashboard = () => {
                                         </ul>
                                     </Dropdown>
                                 </div>
-                            </div>
-                            <p className="text-lg dark:text-white-light/90">
+                            </div> */}
+                            {/* <p className="text-lg dark:text-white-light/90">
                                 Total Profit <span className="ml-2 text-primary">$10,840</span>
                             </p>
                             <div className="relative">
@@ -443,7 +448,7 @@ const AdminDashboard = () => {
                                         </div>
                                     )}
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="panel h-full">
