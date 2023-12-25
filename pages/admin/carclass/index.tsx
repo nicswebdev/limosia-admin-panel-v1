@@ -136,6 +136,7 @@ const CarClassIndex = () => {
                                         { accessor: 'description' },
                                         { accessor: 'max_guest', title: 'Max Guest' },
                                         { accessor: 'max_suitcase', title: 'Max Suitcase' },
+                                        { accessor: 'rent_price_per_day', title: 'Rent Price/Day' },
                                         {
                                             accessor: 'image',
                                             title: 'Image',

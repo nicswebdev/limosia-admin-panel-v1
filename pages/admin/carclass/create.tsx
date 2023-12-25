@@ -27,7 +27,10 @@ export default function CreateCarClass() {
             image: values.image,
             max_guest: values.max_guest,
             max_suitcase: values.max_suitcase,
+            rent_price_per_day: values.rent_price_per_day,
         };
+        console.log(data);
+        // return;
 
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}car-class`, data, {
@@ -125,13 +128,18 @@ export default function CreateCarClass() {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="maxGuest">Max Guesst</label>
+                                        <label htmlFor="maxGuest">Max Guest</label>
                                         <Field id="maxGuest" className="form-input" name="max_guest" type="number" />
                                     </div>
 
                                     <div>
                                         <label htmlFor="maxSuitecase">Max Suitcase</label>
                                         <Field id="maxSuitecase" className="form-input" name="max_suitcase" type="number" />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="maxSuitecase">Rent Price per Day</label>
+                                        <Field id="rentPricePerDay" className="form-input" name="rent_price_per_day" type="number" />
                                     </div>
 
                                     <div className="custom-file-container" data-upload-id="myFirstImage">
