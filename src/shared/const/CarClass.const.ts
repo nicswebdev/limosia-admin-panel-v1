@@ -7,6 +7,7 @@ export const initialValues: CarClassType = {
     description: '',
     max_guest: 0,
     max_suitcase: 0,
+    rent_price_per_day: 0,
 };
 
 export const addCarClassSchema = Yup.object().shape({
